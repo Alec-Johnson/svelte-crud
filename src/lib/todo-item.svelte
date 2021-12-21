@@ -79,8 +79,10 @@
     <button aria-label="Done" class="toggle"></button>
   </form>
 
-  <form action="" method="" class='text'>
-    <input type="text" value="{todo.text}" />
+  <!-- https://www.w3schools.com/tags/att_form_method.asp -->
+  <!-- Send as POST methods then handle() in src/hooks.ts will change methods -->
+  <form action="/todos/{todo.uid}.json?_method=patch" method="post" class='text'>
+    <input type="text" name="text" value="{todo.text}" />
     <button aria-label="Save todo" class='save'></button>
   </form>
 
