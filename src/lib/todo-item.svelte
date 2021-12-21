@@ -1,3 +1,7 @@
+<script lang="ts">
+  export let todo: Todo;
+</script>
+
 <style>
   .todo {
     display: grid;
@@ -58,8 +62,7 @@
     opacity: 1;
   }
   
-	/* TODO: Bring back when API endpoints are available */
-  /* .done {
+  .done {
     transform: none;
     opacity: 0.4;
     filter: drop-shadow(0px 0px 1px rgba(0, 0, 0, 0.1));
@@ -67,20 +70,23 @@
   
   .done .toggle {
     background-image: url("data:image/svg+xml,%3Csvg width='22' height='16' viewBox='0 0 22 16' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20.5 1.5L7.4375 14.5L1.5 8.5909' stroke='%23676778' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-  } */
+  }
 </style>
-<div class="todo">
-  <form action="" method="">
-    <input type="hidden" name="done" value="" />
-    <button aria-label="Done" class="toggle"></button>
+
+<div class="todo" class:done={todo.done}>
+  <!-- https://www.w3schools.com/tags/att_form_method.asp -->
+  <!-- Send as POST methods then handle() in src/hooks.ts will change methods -->
+  <form action="/todos/{todo.uid}.json?_method=patch" method="post">
+    <input type="hidden" name="done" value="{todo.done ? '' : 'true'}" />
+    <button aria-label="Mark todo as {todo.done ? 'note done' : 'done' }" class="toggle"></button>
   </form>
 
-  <form action="" method="" class='text'>
-    <input type="text" />
+  <form action="/todos/{todo.uid}.json?_method=patch" method="post" class='text'>
+    <input type="text" name="text" value="{todo.text}" />
     <button aria-label="Save todo" class='save'></button>
   </form>
 
-  <form action="" method="">
+  <form action="/todos/{todo.uid}.json?_method=delete" method="post">
     <button aria-label="Delete todo" class="delete"></button>
   </form>
 </div>
