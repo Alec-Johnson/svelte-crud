@@ -1,4 +1,4 @@
-
+# References: https://www.gitpod.io/docs/references/gitpod-yml
 tasks:
   - init: npm install
     command: |
@@ -8,7 +8,15 @@ tasks:
 ports:
   - port: 3000
     onOpen: open-browser
-    
+
 vscode:
   extensions:
     - svelte.svelte-vscode
+
+# Runs everytime code changes on Github, prevents waiting for init script
+# to run on each new Gitpod workspace
+github:
+  prebuilds:
+    master: true
+    branches: true
+    pullRequests: true
