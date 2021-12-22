@@ -1,3 +1,4 @@
+---
 # References: https://www.gitpod.io/docs/references/gitpod-yml
 image: gitpod/workspace-postgres
 
